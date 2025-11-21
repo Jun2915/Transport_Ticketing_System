@@ -1,17 +1,25 @@
+global using ASS_WMS.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSqlServer<DB>($@"
+    Data Source=(LocalDB)\MSSQLLocalDB;
+    AttachDbFilename={builder.Environment.ContentRootPath}\DB.mdf; 
+");
 
 var app = builder.Build();
 
+builder.Services.AddAuthentication().AddCookie();
+builder.Services.AddHttpContextAccessor();
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+/*if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-}
+}*/
 
 app.UseHttpsRedirection();
 app.UseRouting();
