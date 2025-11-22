@@ -1,98 +1,42 @@
-﻿@model ASS_WMS.Models.RegisterVM
+﻿@model RegisterVM
+
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title += " | Register";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="text-center mb-0">Register New Account</h3>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Register" method="post" enctype="multipart/form-data">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                        <!-- User Type Selection -->
-                        <div class="form-group mb-3">
-                            <label asp-for="UserType" class="form-label">Register As</label>
-                            <select asp-for="UserType" class="form-select" id="userTypeSelect" required>
-                                <option value="">-- Select User Type --</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Customer">Customer</option>
-                            </select>
-                            <span asp-validation-for="UserType" class="text-danger"></span>
-                        </div>
-
-                        <!-- Name -->
-                        <div class="form-group mb-3">
-                            <label asp-for="Name" class="form-label">Name</label>
-                            <input asp-for="Name" class="form-control" placeholder="Enter your name" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-group mb-3">
-                            <label asp-for="Email" class="form-label">Email</label>
-                            <input asp-for="Email" class="form-control" type="email" placeholder="Enter your email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-
-                        <!-- Phone Number -->
-                        <div class="form-group mb-3">
-                            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
-                            <input asp-for="PhoneNumber" class="form-control" placeholder="Enter 10-11 digit phone number" />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
-
-                        <!-- Password -->
-                        <div class="form-group mb-3">
-                            <label asp-for="Password" class="form-label">Password</label>
-                            <input asp-for="Password" class="form-control" type="password" placeholder="Enter password" />
-                            <small class="form-text text-muted">
-                                Password must contain at least one capital letter, one number, and one symbol ($@!%*?&#)
-                            </small>
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="form-group mb-3">
-                            <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
-                            <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Re-enter password" />
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                        </div>
-
-                        <!-- Photo Upload -->
-                        <div class="form-group mb-3">
-                            <label asp-for="Photo" class="form-label">Profile Photo</label>
-                            <input asp-for="Photo" class="form-control" type="file" accept="image/*" id="photoInput" />
-                            <span asp-validation-for="Photo" class="text-danger"></span>
-                            
-                            <!-- Image Preview -->
-                            <div class="mt-2">
-                                <img id="photoPreview" src="#" alt="Photo Preview" style="max-width: 200px; max-height: 200px; display: none;" class="img-thumbnail" />
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                        </div>
-
-                        <!-- Login Link -->
-                        <div class="text-center mt-3">
-                            <p>Already have an account? <a asp-action="Login">Login here</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<form class="form" method="post" enctype="multipart/form-data">
+    <div asp-validationo-summary="ModelOnly"></div>
     
-    <script src="../js/app.js"></script>
-}
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+    <label asp-for="ConfirmPassword"></label>
+    <input asp-for="ConfirmPassword" />
+    <span asp-validation-for="ConfirmPassword"></span>
+
+    <label asp-for="PhoneNumber"></label>
+    <input asp-for="PhoneNumber" />
+    <span asp-validation-for="PhoneNumber"></span>
+
+    <label asp-for="Photo" id="photoLabel">Profile Photo</label>
+    <label class="upload">
+        <small id="photoText">Select Photo...</small><br />
+        <input asp-for="Photo" accept="image/jpeg, image/png" hidden id="photoInput" />
+        <img src="/userPhoto/uploadPhoto.png" style="width:100px; height:100px;" />
+    </label>
+    <span asp-validation-for="Photo"></span>
+
+    <section>
+        <button>Register</button>
+        <button type="reset">Reset</button>
+    </section>
+</form>

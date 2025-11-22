@@ -11,5 +11,17 @@ public class HomeController : Controller
         return View();
     }
 
+    //GET: Home/Customer
+    //[Authorize(Roles = "Customer")]
+    public IActionResult Customer()
+    {
+        return View();
+    }
 
+    //GET: Home/Admin
+    //[Authorize(Roles = "Admin")]
+    public IActionResult Admin()
+    {
+        return View();
+    }
 }

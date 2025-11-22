@@ -12,7 +12,7 @@ window.addEventListener("click", function (event) {
 });
 
 // Photo preview
-document.getElementById('photoInput').addEventListener('change', function (e) {
+/*document.getElementById('photoInput').addEventListener('change', function (e) {
     const file = e.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -23,16 +23,29 @@ document.getElementById('photoInput').addEventListener('change', function (e) {
         }
         reader.readAsDataURL(file);
     }
-});
+});*/
 
-// Update photo label based on user type
-document.getElementById('userTypeSelect').addEventListener('change', function () {
-    const photoLabel = document.querySelector('label[for="Photo"]');
-    if (this.value === 'Admin') {
-        photoLabel.textContent = 'Admin Profile Photo';
-    } else if (this.value === 'Customer') {
-        photoLabel.textContent = 'Customer Profile Photo';
-    } else {
-        photoLabel.textContent = 'Profile Photo';
+/*$('.upload input').on('change', e => {
+    const f = e.target.files[0];
+    const img = $(e.target).siblings('img')[0];
+
+    img.dataset.src ??= img.src;
+
+    if (f && f.type.startsWith('image/')) {
+        img.onload = e => URL.revokeObjectURL(img.src);
+        img.src = URL.createObjectURL(f);
     }
+    else {
+        img.src = img.dataset.src;
+        e.target.value = '';
+    }
+
+    // Trigger input validation
+    $(e.target).valid();
+});*/
+
+//Reset Form
+$('[type=reset]').on('click', e => {
+    e.preventDefault();
+    location = location;
 });
