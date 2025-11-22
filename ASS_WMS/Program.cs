@@ -16,7 +16,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 // Culture = en-MY, ms-MY, zh-CN, ja-JP, ko-KR, etc.
-// TODO
 app.UseRequestLocalization("ja-JP");
 
 app.MapDefaultControllerRoute();

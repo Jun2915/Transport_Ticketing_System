@@ -35,7 +35,7 @@ public class User
 public class Admin : User
 {
     [MaxLength(100)]
-    public string PhotoURL { get; set; }
+    public string Admin_PhotoURL { get; set; }
 }
 
 public class Customer : User

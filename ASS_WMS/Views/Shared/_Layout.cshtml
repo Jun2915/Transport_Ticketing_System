@@ -1,0 +1,64 @@
+﻿@inject DB db
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewBag.Title</title>
+        <link rel="shortcut icon" href="/images/shortcut_icon.jpg" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/app.css" asp-append-version="true" />
+        <script src="../js/app.js"></script>
+        @RenderSection("head",false)
+    </head>
+    <body>
+        <div class="info">@Html.Raw(TempData["Info"])</div>
+
+        <header>
+            <h1><a href="/">TranspoLink</a></h1>
+
+        @if (User.Identity!.IsAuthenticated)
+        {
+            <div style="display:flex; align-items:center;">
+                <!--Profile Icon-->
+                <div id="profileIcon" class="profile-Icon" onclick="toggleProfile()">
+                    @User.Identity.Name![0]
+                </div>
+
+                <!--Slide Out-->
+                <div id="profileMenu" class="profile-Menu">
+                    <h3>@User.Identity.Name</h3>
+
+                    @if (User.IsInRole("Customer"))
+                    {
+                        var photoURL = db.Customers.Find(User.Identity.Name)!.PhotoURL;
+                        <img src="/userPhoto/@photoURL" width="60" style="border-radius:50%"/>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        var photoURL = db.Admins.Find(User.Identity.Name)!.Admin_PhotoURL;
+                    }
+
+                    <hr />
+
+                    <a href="/Account/Profile">Profile</a>
+                    <a href="/Account/Settings">Setting</a>
+                    <a href="/Account/LogOut">LogOut</a>
+                </div>
+            </div>
+        }
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/Home/BusTicket">Bus Ticket</a>
+        <a href="/Home/TrainTicket">Train Ticket</a>
+        <a href="/Home/FerryTicket">Ferry Ticket</a>
+        <a href="/Home/AeroplaneTicket">Aeroplane Ticket</a>
+
+        <div></div>
+    </nav>
+    </body>
+</html>
