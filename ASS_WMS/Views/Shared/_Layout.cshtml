@@ -9,7 +9,6 @@
         <link rel="shortcut icon" href="/images/shortcut_icon.jpg" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/app.css" asp-append-version="true" />
-        <script src="../js/app.js"></script>
         @RenderSection("head",false)
     </head>
     <body>
@@ -57,8 +56,16 @@
         <a href="/Home/TrainTicket">Train Ticket</a>
         <a href="/Home/FerryTicket">Ferry Ticket</a>
         <a href="/Home/AeroplaneTicket">Aeroplane Ticket</a>
-
-        <div></div>
     </nav>
+
+    <main>
+        <h1>@ViewBag.Title</h1>
+        @RenderBody()
+    </main>
+    <footer>
+        Developed by <b>GPT</b> &middot;
+        Copyrighted &copy; @DateTime.Today.Year
+    </footer>
+    <script src="../js/app.js"></script>
     </body>
 </html>
